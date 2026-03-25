@@ -1,3 +1,108 @@
+# What is<br>Research Software Engineering?
+
+-
+
+![Diagram of a line labeled "Research" at the left, and "Software engineering" at the right, with "Research software engineering" covering the middle space.](images/rse.svg) <!-- .element width="1300px" -->
+
+Notes:
+Research software engineering is the fuzzy space between
+pure non-computational research
+and pure software engineering.
+Put another way,
+it's the techniques of software engineering applied to research.
+
+-
+
+# Who are<br>Research Software Engineers?
+
+-
+
+<!-- .element data-background-image="images/rse.jpg" -->
+
+Notes:
+A research software engineer
+is someone whose job description is
+(primarily)
+research software engineering.
+The term was coined at the Collaborations Workshop 2012,
+with a number of aims:
+to unite a disparate group of differing job titles at different institutions,
+and to highlight the need for more roles specifically focussing on software.
+For this reason,
+while some use the term "research software engineer"
+to refer to anyone who does research software engineering in the course of their job,
+my preference is to delineate those who are specifically paid to care about software:
+the problem with other roles is that
+the incentive structure works against software maintenance,
+unless ones KPIs are directly tied to software quality.
+
+-
+
+<!-- .element data-background-image="images/pool-group.jpeg" -->
+
+Notes:
+One can roughly split RSEs into two groups:
+pool RSEs and group (or integrated) RSEs.
+Pool RSEs form part of centralised teams,
+and frequently work on problems outside of their specialism.
+They have to be highly adaptable to new contexts,
+but will generally need some startup time
+to familiarise themselves with your software and your domain
+before they become productive.
+The DiRAC RSE team operates on the pool model,
+and many institutions also have their own RSE teams.
+Group RSEs on the other hand
+are integrated with your research group long term;
+they frequently handle long-term maintenance of code,
+sometimes that they were the original developer of.
+As a specialist in the domain and software,
+they may sometimes benefit from the support of
+pool RSEs specialising in specific topics.
+
+-
+
+<!-- .element data-background-image="images/harp-drum.jpg" -->
+
+Notes:
+If you're familiar with performing orchestral music,
+think of a pool RSE like a harpist.
+You probably don't have one as part of your ensemble usually,
+but they're specialist in what they do,
+join your group for a specific purpose,
+and adapt quickly to working with you.
+Once their job is done,
+they leave again.
+On the other hand,
+a group RSE is like a drummer:
+while they don't perform the same family of instrument as the rest of the ensemble,
+they rehearse with you week in week out,
+and are more tightly integrated with everything you do.
+Indeed,
+much of a band's performance is underpinned by the rhythm section.
+Importantly,
+both performers are credited for their work,
+and the same applies to RSEs;
+where work is publishable,
+appropriate authorship credit goes to all RSEs involved.
+
+-
+
+# What do RSEs do?
+
+-
+
+![A log-log plot of FLOP/s against node count, showing a roughly straight line](images/benchmark.png) <!-- .element width="1000px" -->
+
+Notes:
+
+
+
+
+
+
+
+
+
 <!-- .element data-background-image="images/greens.jpg" -->
 
 Notes:
@@ -97,7 +202,7 @@ or the student is about to submit and their completion is jeopardised.
 
 -
 
-<!-- .element data-background-image="images/mirror.jpg" -->
+<!-- .element data-background-image="images/room.jpg" -->
 
 Notes:
 Even if you don't have students
