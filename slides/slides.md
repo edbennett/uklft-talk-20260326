@@ -301,8 +301,6 @@ then the software is written to behave as in the tutorials.
 
 <!-- .element data-background-image="images/function.png" -->
 
-![Screenshot of the Grid Doxygen for the WilsonGaugeAction template class](images/grid-doxygen.png) <!-- .element height="700px" class="fragment" -->
-
 Notes:
 What about when it becomes necessary to start touching the source code directly?
 Documenting each class and function with what it does
@@ -315,6 +313,11 @@ but having the comments in place at all is almost as valuable.
 (And don't fall into the trap of thinking that
 automatically-generated documentation like this
 is a substitute for more holistic user-facing documentation!)
+
+-
+
+![Screenshot of the Grid Doxygen for the WilsonGaugeAction template class](images/grid-doxygen.png) <!-- .element height="700px" class="fragment" -->
+
 One thing that we worked on at the CCP-TEPP docathon last week
 was expanding the Doxygen documentation for the actions in Grid,
 as when we asked the DiRAC RSE team to work on optimising them last year,
