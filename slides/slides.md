@@ -398,6 +398,12 @@ This can be very helpful when you try and go beyond examples listed in documenta
 
 -
 
+<div style="width: 30%; float: right;">
+
+[![CoSeC logo](images/cosec.png) <!-- .element height="100px" -->](https://cosec.ac.uk)
+
+</div>
+
 ## CCP-TEPP
 
 [ccp-tepp.github.io](https://ccp-tepp.github.io)
