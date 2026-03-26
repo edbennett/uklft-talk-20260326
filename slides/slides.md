@@ -328,8 +328,9 @@ is a substitute for more holistic user-facing documentation!)
 
 -
 
-![Screenshot of the Grid Doxygen for the WilsonGaugeAction template class](images/grid-doxygen.png) <!-- .element height="700px" class="fragment" -->
+![Screenshot of the Grid Doxygen for the WilsonGaugeAction template class](images/grid-doxygen.png) <!-- .element height="700px" -->
 
+Notes:
 One thing that we worked on at the CCP-TEPP docathon last week
 was expanding the Doxygen documentation for the actions in Grid,
 as when we asked the DiRAC RSE team to work on optimising them last year,
