@@ -216,6 +216,18 @@ An aim of this process is to  make the logic of the analysis clearer to a reader
 as well as ensuring that the results are reproducible
 rather than changing on each attempt at the analysis.
 
+-
+
+<!-- .element data-background-image="images/data.png" -->
+
+Notes:
+RSEs can also contribute towards open data efforts.
+This includes developing middleware and software working with
+systems like the International Lattice Data Grid,
+as well as taking on basic data stewardship roles.
+The former can be done by generalist RSEs;
+the latter requires tight integration with collaborations.
+
 ---
 
 <!-- .element data-background-image="images/unicorn.jpg" -->
