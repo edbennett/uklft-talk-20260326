@@ -283,6 +283,105 @@ most institutions don't yet have a structure for this.
 
 -
 
+<!-- .element data-background-image="images/docs.png" -->
+
+Notes:
+Given that we have central RSE teams available,
+if we can reduce the barrier to entry for them modifying the code,
+
+More complicated software will benefit from a more structured set of documentation.
+This can go into more detail on build and run options.
+It can include both tutorials and more formal reference material.
+One approach you might think about to take things a step further is
+"[tutorial-driven development](https://www.youtube.com/watch?v=XjpfgP2SPt8)",
+where tutorials are written first,
+then the software is written to behave as in the tutorials.
+
+-
+
+<!-- .element data-background-image="images/function.png" -->
+
+![Screenshot of the Grid Doxygen for the WilsonGaugeAction template class](images/grid-doxygen.png) <!-- .element height="700px" class="fragment" -->
+
+Notes:
+What about when it becomes necessary to start touching the source code directly?
+Documenting each class and function with what it does
+makes it much simpler to understand what the code does where,
+and find the right place to make edits.
+You can use tools like [Doxygen](https://www.doxygen.nl/index.html)
+so that specifically-formatted annotations
+are automatically turned into formatted developer documentation pages,
+but having the comments in place at all is almost as valuable.
+(And don't fall into the trap of thinking that
+automatically-generated documentation like this
+is a substitute for more holistic user-facing documentation!)
+One thing that we worked on at the CCP-TEPP docathon last week
+was expanding the Doxygen documentation for the actions in Grid,
+as when we asked the DiRAC RSE team to work on optimising them last year,
+multiple months were spent tracing through how they worked.
+
+-
+
+<!-- .element data-background-image="images/names.png" -->
+
+Notes:
+In general,
+good software engineering practice is to use descriptive names for variables.
+Since in science we tend to think of problems
+in terms of single-letter variable names
+for pen and paper definitions,
+($l$ for length, $Q$ for charge, ...),
+we often think it is intuitive to use the same names for our code.
+This is often true,
+but it is essential to include or link to definitions.
+There are often multiple difference choices of notation
+($f$ or $\nu$ for frequency),
+and of normalisation
+(how many factors of $\sqrt{2}$ are there in $f_{\pi}$?),
+without which your collaborators have to reverse-engineer
+back to what they think you must have meant.
+Also,
+single-letter names have very poor search engine optimisation,
+so even trying to find a paper or textbook to refer to is hard.)
+Adding a single line comment with an arXiv reference and equation number
+takes thirty seconds at most
+if you already have the paper open to do the implementation,
+and immeasurably improves your future collaborators' days.
+
+-
+
+<!-- .element data-background-image="images/test.png" -->
+
+Notes:
+Being the conscientious scientists that we are,
+we always already perform comprehensive tests on code after we have modified it.
+But when your code is more than a few hundred lines long,
+then you're not going to be able to,
+by hand,
+verify that every single path through the code is unbroken.
+You'll most likely focus on the areas that got changed,
+making certain assumptions about the input data
+(perhaps aligned with what you're modifying the code to do at the time),
+and other code paths may get overlooked.
+Adding automated tests means that future collaborators can automatically make sure that
+they aren't breaking any seemingly-unrelated functionality by accident,
+as well as verifying that the functionality that you're adding is doing the right thing.
+While this takes more time than writing a one-line comment,
+it means that the work you've done won't be in vain,
+and you won't have to go back and fix it repeatedly later when other people trample it.
+
+Perhaps you've heard of all of these benefits before,
+but there's one additional benefit of a suite of unit tests that is less discussed.
+Unit tests provide a great entry point for reading the code.
+If I want to know how a particular function is called,
+and what format to expect from its output,
+a unit test for that function will give that to me.
+A good test suite will also highlight common errors that won't work,
+so I can avoid those.
+This can be very helpful when you try and go beyond examples listed in documentation.
+
+-
+
 ## CCP-TEPP
 
 [ccp-tepp.github.io](https://ccp-tepp.github.io)
@@ -417,3 +516,15 @@ develop skills to do this more effectively
 This includes researchers and RSEs
 doing more effective profiling and performance engineering.
 It's worth keeping an eye on.
+
+---
+
+## Conclusions
+
+- Research software _engineering_ is everyone's job
+- Central RSE groups are a powerful resource
+  - Some small changes in the way you write your code can be a huge force multiplier
+- Long-term embedded RSEs are hugely important for long-term maintenance
+  - 🦄🚫
+- RSE academics are possible
+  - But need careful definitions of career pathways and KPIs

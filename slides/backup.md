@@ -6,5 +6,7 @@
 - Drums: [pxhere](https://pxhere.com/en/photo/47146)
 - Unicorn: [Lilla Frerichs on publicdomainpictures](https://www.publicdomainpictures.net/en/view-image.php?image=41046&picture=painting-of-unicorn-statue)
 - Cash: [Petr Kratochvil on publicdomainpictures](https://www.publicdomainpictures.net/en/view-image.php?image=411&picture=british-bank-notes&large=1)
+- [Pandas](https://github.com/pandas-dev/pandas)
 - [Grid](https://github.com/paboyle/Grid)
 - [Grid CI](https://ci.dev.dirac.ed.ac.uk/project/GridBasedSoftware_BenchmarkBenchmark_GridTursaGpu80n1?projectTab=stats#all-projects)
+- [Grid Doxygen on TELOS Collaboration fork](https://telos-collaboration.github.io/Grid)
