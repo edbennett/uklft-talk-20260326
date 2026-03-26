@@ -11,7 +11,7 @@ and pure software engineering.
 Put another way,
 it's the techniques of software engineering applied to research.
 
--
+---
 
 # Who are<br>Research Software Engineers?
 
@@ -38,7 +38,7 @@ unless ones KPIs are directly tied to software quality.
 
 -
 
-<!-- .element data-background-image="images/pool-group.jpeg" -->
+<!-- .element data-background-image="images/pool-group.jpg" -->
 
 Notes:
 One can roughly split RSEs into two groups:
@@ -61,7 +61,7 @@ pool RSEs specialising in specific topics.
 
 -
 
-<!-- .element data-background-image="images/harp-drum.jpg" -->
+<!-- .element data-background-image="images/harp-drums.jpg" -->
 
 Notes:
 If you're familiar with performing orchestral music,
@@ -85,7 +85,7 @@ and the same applies to RSEs;
 where work is publishable,
 appropriate authorship credit goes to all RSEs involved.
 
--
+---
 
 # What do RSEs do?
 
@@ -94,411 +94,298 @@ appropriate authorship credit goes to all RSEs involved.
 ![A log-log plot of FLOP/s against node count, showing a roughly straight line](images/benchmark.png) <!-- .element width="1000px" -->
 
 Notes:
+One common activity of pool RSEs in particular is
+to perform benchmarking and scalability analysis.
+This is perhaps one of the easiest tasks for a non-specialist to perform:
+if you give them some code to run an example problem,
+and instructions on what parameters to adjust to vary the parallelisation,
+they can very efficiently produce strong and weak scaling studies.
+This is useful if you are applying for HPC time,
+for example on DiRAC,
+so that you can demonstrate that you will make optimal use of the available resources.
 
+-
 
-
-
-
-
-
-
-
-<!-- .element data-background-image="images/greens.jpg" -->
+![A time series graph, with blue shaded regions above, and red and green spikes underneath.](images/profile-timeseries.png) <!-- .element width="1300px" -->
 
 Notes:
-Apologies in advance that this is going to be an "eat your greens" talk.
-Many of the topics I'll outline will already be familiar to most of you.
-Hopefully by the end of it I'll have convinced you that the greens are tasty,
-and you will feel better for having had them.
+The next step from benchmarking is profiling.
+In this case,
+example problems are run through tooling to identify
+areas where the code makes sub-optimal use of the available hardware.
+This is the first step towards optimisation work,
+and is simple for a non-domain-specialist RSE to do.
+
+-
+
+![A portion of a pull request focusing on changes to a `Cshift_table` related function](images/optimisation.png) <!-- .element height="700px" -->
+
+Notes:
+A very popular activity to give to pool RSEs is performance engineering
+(or "optimisation")
+of codes,
+either for current or for new hardware targets.
+Many codes,
+even in lattice,
+leave a lot of performance on the table,
+and RSEs can help to enable codes to make better use of this.
+This can however require more onboarding time than benchmarking and profiling,
+since a lot more context is needed to understand the data structures and data movement,
+as well as how to potentially go beyond technical implementation improvements
+to algorithmic ones that can unlock more speedups.
+
+-
+
+![A portion of a pull request focusing on moving from being specific to SU to generic for GaugeGroup](images/feature.png) <!-- .element height="700px" -->
+
+Notes:
+Something that's more challenging for a pool RSE to do
+is to perform feature addition work.
+This is not impossible if a prototype implementation is available,
+or a lot of time is available to meet with the RSE and pair program or similar.
+An integrated RSE can do this much more quickly,
+but an alternative is a team of a student or postdoc and a generalist RSE,
+with guidance.
+
+-
+
+![Two diagrams of linear time: one with RSE cleaning up after a student completes; the other with the two working cooperatively for a much quicker finish](images/collaborative-diagram.svg) <!-- .element width="600px" -->
+
+Notes:
+Imagine that you have a student working on a new feature for your software.
+Assuming that you don't want to let the student push directly into the main branch,
+in a pool RSE model,
+the most likely setup for merging the code is that
+after the student finishes work
+(and possibly graduates),
+you apply for RSE time to tidy up the code and merge it.
+The RSE then has to reverse engineer the student's work,
+and potentially reimplement large chunks of it.
+With an integrated RSE model,
+the RSE can instead work concurrently with the student,
+giving regular reviews and feedback,
+so that by the time the feature is finished,
+only a little effort is required to polish the final corners and merge.
+The feature is merged and available for production use much earlier,
+and the student learns far more from the experience.
+
+-
+
+![A graph of performance over time for the last two years, showing consistent performance with occasional improvements](images/cicd.png) <!-- .element width="1300px" -->
+
+Notes:
+Something that RSEs can and do support with,
+but there is space to do more of,
+is continuous integration and continuous deployment.
+Continuous integration is the idea that your test suite runs
+after every commit and on every pull request,
+to verify that the tests pass and the code isn't broken before it is merged.
+In addition,
+performance tests can be used as a continuous benchmark,
+to verify that performance regressions aren't introduced into the code,
+and that the target hardware is continuing to perform optimally.
+Continuous deployment takes this a step further,
+with the fresh builds being made available to users of the software,
+rather than fixing on a particular version
+and needing to manually build newer versions later.
+
+-
+
+![Screenshot of C++ code making assertions](images/tests.png) <!-- .element width="1300px" -->
+
+Notes:
+Of course,
+a shiny CI setup isn't as valuable as it could be if there are no automated tests.
+Writing a good test suite requires both software and domain expertise.
+
+-
+
+![Flowchart of the steps in a typical lattice computation](images/workflow-diagram.svg) <!-- .element height="700px" -->
+
+Notes:
+Something I've spent a lot of time on recently is the automation of analysis workflows.
+While HPC codes can be relatively stable between different projects,
+it's more common for each paper to have its own set of analysis tools.
+Arranging these into an automated structure so that the findings are reproducible,
+both by the collaboration and by those reading the paper,
+requires some work.
+This is easiest if it is baked in from the start;
+reverse-engineering a completed analysis and re-implementing the automation
+is much harder.
+An aim of this process is to  make the logic of the analysis clearer to a reader,
+as well as ensuring that the results are reproducible
+rather than changing on each attempt at the analysis.
 
 ---
 
-<!-- .element data-background-image="images/write.jpg" -->
+<!-- .element data-background-image="images/unicorn.jpg" -->
 
 Notes:
-When we are excited about implementing a new algorithm,
-we can go into something of a fugue state,
-translating papers into code.
-We hold all of the relevant detail in our head,
-so the code becomes obvious.
-Who could possibly have problems reading such obvious code?
-It's time to hurry on and start doing science with the code,
-right?
+For a while,
+there was a meme in the RSE community
+to use the image of the unicorn to represent ourselves,
+the people who could understand both the software and the science.
+More recently,
+it's increasingly acknowledged that this isn't entirely accurate:
+RSEs aren't unicorns,
+and that's OK.
+There is a low single-digit number of people in the world
+who can keep a handle on all developments in lattice field theory
+and also on software development practices,
+and I'm not one of them.
+RSEs,
+just like anyone else in academia,
+form part of interdisciplinary and multi-skilled teams,
+filling gaps that would otherwise exist.
+
+-
+
+<!-- .element data-background-image="images/cash.jpg" -->
+
+Notes:
+How do we pay for this?
+In the last decade or so we have done a better job at
+convincing funders to fund software support alongside large facilities,
+in the form of RSE pools or teams.
+We still have to push back at every major government procurement
+that spending all the money to get a higher headline amount of compute
+at the expense of having nobody to get the software to work on it
+will not give best value for money,
+but that battle has got easier.
+Funding RSEs more tightly integrated with research groups is harder.
+STFC funded a single RSE fellowship in 2020,
+and since EPSRC have moved away from the RSE fellowship model,
+to my knowledge have no plans to offer more.
+I was lucky enough to be awarded the RSE fellowship,
+but surprisingly haven't managed
+to single-handedly fix all software in the last five years.
+
+-
+
+![A mortarboard](images/mortarboard.svg) <!-- .element width="600px" -->
+
+Notes:
+There is of course a secret third option to being an RSE.
+One can become an academic.
+Historically this was problematic,
+and something the RSE movement sought to escape,
+because the pressure was to produce papers rather than spend time on software.
+However,
+if the academic incentive structure could be changed to include software KPIs,
+this would become more viable.
+The UK already has a number of academics who have "ascended" from RSE posts;
+however,
+most institutions don't yet have a structure for this.
 
 ---
 
-<!-- .element data-background-image="images/stop.jpg" -->
-
-Notes:
-No!
-Now is the time to stop and ask a few very simple questions!
-
----
-
-# Who
-
-is going to read my code?
+# What _can_ we do?
 
 -
 
-<!-- .element data-background-image="images/reader.jpg" -->
+## CCP-TEPP
+
+[ccp-tepp.github.io](https://ccp-tepp.github.io)
+
+- [Roadmap now available](https://ccp-tepp.github.io/files/CCP_TEPP_Roadmap_1.0_2026-03-10.pdf)
+- [Docathon: March 18&ndash;20, University of Warwick](https://indico.global/event/16510/) (complete)
+- [Hadrons hackathon: April 14&ndash;15, University of Edinburgh](https://indico.ph.ed.ac.uk/event/418/)
+- [Summer school: June 29&ndash;July 3, Swansea University](https://indico.global/event/16372/)
 
 Notes:
-If you're making your code publicly available for reproducibility and openness
-(and you should!),
-your code is a way you are communicating your intent to those reading your work.
-Even if while writing it you don't think you'll be releasing it,
-it is still worth writing with this in mind,
-in case you change your mind later,
-or the code is audited for other reasons.
-Things you can think about include
-what messages you might unintentionally communicate with,
-for example,
-hardcoded constants or magic numbers.
+The project to form a
+Collaborative Computational Project in Theoretical and Experimental Particle Physics
+aims to address common skills gaps in particle physics software,
+and support the community in coming together to share and improve software.
+Currently this is funded to the end of 2026 as a scoping project;
+time will tell whether this funding will be extended to a full CCP.
+In the mean time,
+we can engage with its events.
+Following a series of workshops last year,
+the roadmap of targets for effort in the next few years of particle physics software
+is now available.
+This will be revised later this year,
+so watch out for opportunities to engage.
+One gap identified was around documentation;
+to try and improve this,
+and develop the community's skills in documentation writing,
+we organised a docathon last week in Warwick.
+We also identified that many groups are interested in using Hadrons,
+but lack the time or resources to get started;
+we have tried to ease this process by organising a hackathon next month.
+Finally,
+we identified that many software skills
+would be beneficial to be embedded across the community,
+but are not typically covered as part of a PhD student's training;
+to this end,
+we are organising a summer school later this year
+to cover as many of the skills gaps as we can.
 
 -
 
-<!-- .element data-background-image="images/rse.jpg" -->
+<!-- .element data-background-image="images/codereview.jpg" -->
 
 Notes:
-At some point,
-you will need to have someone else work on your code.
-One such group is Research Software Engineers.
-Unless you're lucky enough to have a funded RSE on your project
-(and,
-depending on their skill set and focus,
-possibly even then),
-you're likely to need to make use of a pool RSE,
-who will not be specialist on your software,
-or likely even in your field of research.
-They will need to get up to speed with both,
-while also trying to make progress towards the project's goals.
-The time this takes depends strongly on how the software is written;
-there are many things you can do to bring this down,
-many of which do not require huge up-front effort on your part!
-RSE projects are often as short as 1&ndash;3 months;
-for sufficiently difficult-to-approach software,
-this can be less than the time taken
-to be able to compile and understand how to make meaningful changes to it.
+Code review is important for all software developers;
+it's a key way to learn from each other,
+as well as avoiding introducing bugs or design flaws.
+However,
+this is especially important when delegating writing code
+(including analysis workflows)
+to students.
+We would do a disservice to students by denying them
+this opportunity to develop and get feedback on their programming skills,
+and we would do a disservice to the scientific community
+by sharing code
+(or even the output of code)
+in which we haven't developed full confidence.
+Looking at the output of the code is not sufficient;
+in particular in the age of LLM-based code-writing assistants,
+but even where these aren't used,
+it is all too easy to produce plausible output
+based on an underlying implementation that lacks the necessary scientific rigour.
+This is an ideal task for an integrated RSE:
+I now hold weekly meetings with each of our PhD students to
+review their software work,
+understand its reproducibility and rigour,
+and offer suggestions for improvement.
 
 -
 
-<!-- .element data-background-image="images/whiteboard.jpg" -->
+![Screen shot of the APS Open Science home page](images/aps-open-science.png) <!-- .element height="700px" -->
 
 Notes:
-Even if you never engage with an RSE,
-you will most likely at some point have a research student.
-Since a typical first-year PhD student is less experienced than a professional RSE,
-they will typically take longer to get up to speed with the software.
-Similarly to a generalist RSE,
-the software is likely to form significant scaffolding
-in their developing understanding of the wider research field.
-They are also prone to make errors in compilation and usage of the code:
-at best,
-this wastes valuable months of a 3-year programme of study;
-at worst,
-the errors are not detected until the work has already entered the literature,
-or the student is about to submit and their completion is jeopardised.
+We all do excellent work documenting our scientific findings in papers.
+Finding write-ups of technical work,
+however,
+is harder:
+they might be scattered between paper appendices,
+PhD thesis,
+internal wikis,
+and backs of envelops in a paper recycling facility.
+Until recently,
+this was somewhat justifiable:
+there was no appropriate venue for publishing such technical notes;
+while Journal of Open Source Software and Communications in Computational Science
+could take strictly software contributions,
+the more general technical paper didn't have a natural home.
+My hope is that the new journal APS Open Science can fill this gap;
+it at least claims to welcome a wider scope than the current physics journals
+("diverse research outputs including
+data and software advances,
+replication studies,
+and negative and null results"),
+which require novel physics to be front and centre.
 
 -
 
-<!-- .element data-background-image="images/room.jpg" -->
+
+Try working more reproducibly and openly
+([arXiv:2504.01876](https://arxiv.org/abs/2504.01876))
 
 Notes:
-Even if you don't have students
-(or don't care about their onboarding time),
-it's likely that at some point you'll need to revisit your code.
-Perhaps to start another project,
-or to understand a previous one when you receive questions about it.
-Yourself in six months' time is a different person;
-you will no longer have the same awareness of all of the moving parts of the code
-as you did when you wrote it.
-
----
-
-# What
-
-do they need to do with it?
-
--
-
-<!-- .element data-background-image="images/play.jpg" -->
-
-Notes:
-They will need to compile, install, or build the code,
-and run it.
-
--
-
-<!-- .element data-background-image="images/read.jpg" -->
-
-Notes:
-They will need to read the code,
-and understand what it is doing&mdash;either
-as a goal unto itself,
-or so they will be able to make changes.
-
--
-
-<!-- .element data-background-image="images/modify.jpg" -->
-
-Notes:
-They will most likely need to make changes.
-This might include optimising the code for better performance,
-porting it to new architectures,
-extending it with new functionality,
-or interfacing it with other tools.
-
--
-
-<!-- .element data-background-image="images/verify.jpg" -->
-
-Notes:
-They will then need to verify that the program gives correct results.
-In particular,
-if changes have been made,
-they would need to be confident that the changes don't break any existing functionality,
-as well as giving the correct results for the feature that has been added.
-
----
-
-# How
-
-do I help them to do this?
-
-Notes:
-Without too much effort from my side?
-
--
-
-<!-- .element data-background-image="images/books.jpg" -->
-
-Notes:
-The first element is documentation.
-This is best written while the code is still fresh in your mind;
-either at the same time as you're writing it,
-or immediately afterwards,
-before you move on.
-Going back to document things later is much harder.
-There's a few kinds of documentation it's worth calling out explicitly.
-
--
-
-<!-- .element data-background-image="images/readme.png" -->
-
-Notes:
-Don't underestimate the power of a good README.
-This will probably be the first thing a prospective user sees about your software,
-so it's worth taking the extra 30 minutes to polish it. 
-Users should come away understanding how to build or install the code,
-and perform at least an initial run of it,
-and where to find more documentation if they need it.
-If your software is small in scope,
-a good README might be enough user-facing documentation in itself!
-
--
-
-<!-- .element data-background-image="images/docs.png" -->
-
-Notes:
-More complicated software will benefit from a more structured set of documentation.
-This can go into more detail on build and run options.
-It can include both tutorials and more formal reference material.
-One approach you might think about to take things a step further is
-"[tutorial-driven development](https://www.youtube.com/watch?v=XjpfgP2SPt8)",
-where tutorials are written first,
-then the software is written to behave as in the tutorials.
-
--
-
-<!-- .element data-background-image="images/function.png" -->
-
-Notes:
-What about when it becomes necessary to start touching the source code directly?
-Documenting each class and function with what it does
-makes it much simpler to understand what the code does where,
-and find the right place to make edits.
-You can use tools like [Doxygen](https://www.doxygen.nl/index.html)
-so that specifically-formatted annotations
-are automatically turned into formatted developer documentation pages,
-but having the comments in place at all is almost as valuable.
-(And don't fall into the trap of thinking that
-automatically-generated documentation like this
-is a substitute for more holistic user-facing documentation!)
-
--
-
-<!-- .element data-background-image="images/names.png" -->
-
-Notes:
-In general,
-good software engineering practice is to use descriptive names for variables.
-Since in science we tend to think of problems
-in terms of single-letter variable names
-for pen and paper definitions,
-($l$ for length, $Q$ for charge, ...),
-we often think it is intuitive to use the same names for our code.
-This is often true,
-but it is essential to include or link to definitions.
-There are often multiple difference choices of notation
-($f$ or $\nu$ for frequency),
-and of normalisation
-(how many factors of $\sqrt{2}$ are there in $f_{\pi}$?),
-without which your collaborators have to reverse-engineer
-back to what they think you must have meant.
-Also,
-single-letter names have very poor search engine optimisation,
-so even trying to find a paper or textbook to refer to is hard.)
-Adding a single line comment with an arXiv reference and equation number
-takes thirty seconds at most
-if you already have the paper open to do the implementation,
-and immeasurably improves your future collaborators' days.
-
--
-
-<!-- .element data-background-image="images/formatting.png" -->
-
-Notes:
-Moving to the lowest level,
-having a common code format across a repository makes it
-much easier to read and reason about.
-Having this format be common to most projects makes it
-even more approachable to new collaborators.
-While it's commonly agreed that a common style is good,
-the exact definition of that style can be more contentious.
-So rather than defining it by hand
-(spending time painting the bike shed rather than building the tools),
-it is best to pick a tool and a pre-defined set of rules,
-and let the tool enforce the rules automatically.
-
-For the simpler rules where fixes can be applied automatically,
-this takes ten minutes to set up for a project,
-and results in much more readable code.
-For Python,
-`ruff format` is very efficient and works to a very common specification.
-For C and C++ code,
-`clang-format` is a popular choice.
-
--
-
-<!-- .element data-background-image="images/test.jpg" -->
-
-Notes:
-Aside from documentation,
-a second element that helps others work with your code is testing.
-
--
-
-<!-- .element data-background-image="images/test.png" -->
-
-Notes:
-Being the conscientious scientists that we are,
-we always already perform comprehensive tests on code after we haev modified it.
-But when your code is more than a few hundred lines long,
-then you're not going to be able to,
-by hand,
-verify that every single path through the code is unbroken.
-You'll most likely focus on the areas that got changed,
-making certain assumptions about the input data
-(perhaps aligned with what you're modifying the code to do at the time),
-and other code paths may get overlooked.
-Adding automated tests means that future collaborators can automatically make sure that
-they aren't breaking any seemingly-unrelated functionality by accident,
-as well as verifying that the functionality that you're adding is doing the right thing.
-While this takes more time than writing a one-line comment,
-it means that the work you've done won't be in vain,
-and you won't have to go back and fix it repeatedly later when other people trample it.
-
-Perhaps you've heard of all of these benefits before,
-but there's one additional benefit of a suite of unit tests that is less discussed.
-Unit tests provide a great entry point for reading the code.
-If I want to know how a particular function is called,
-and what format to expect from its output,
-a unit test for that function will give that to me.
-A good test suite will also highlight common errors that won't work,
-so I can avoid those.
-This can be very helpful when you try and go beyond examples listed in documentation.
-
--
-
-<!-- .element data-background-image="images/ci.png" -->
-
-Notes:
-Stepping a little away from software engineering briefly,
-once you have a test suite,
-a natural next step is to run that test suite automatically after each commit,
-and on each merge/pull request to the repository,
-so that even if you forget to run it,
-or a collaborator isn't aware of it,
-you still benefit from it.
-This is usually referred to as "continuous integration" (CI).
-
-For small projects,
-most code forges offer free CI services.
-If you need to test on HPC,
-then these won't work,
-but many HPC centres work with software communities to facilitate access for CI.
-For example,
-the DiRAC Extreme Scaling service in Edinburgh
-is attached to a TeamCity instance
-used to test the Grid particle physics code.
-
--
-
-<!-- .element data-background-image="images/performance.png" -->
-
-Notes:
-Once you have a CI setup,
-if your code is at all performance-sensitive
-(and in particular if it uses significant amounts of HPC resources),
-then it makes sense to monitor the performance of performance-critical routines
-as part of your CI.
-This lets you know if you've introduced a performance regression,
-and conversely demonstrate performance improvement over time if you manage that.
-
----
-
-## Conclusions
-
-<div width="33%" style="float: left; padding-left: -12px;">
-
-- Write code for:
-  - Non-specialist RSEs
-  - Future students
-  - Your future self
-  
-</div>
-
-<div width="33%" style="float: left; padding-left: 24px;">
-
-- Help them to:
-  - Run
-  - Read
-  - Modify
-  - Test
-
-</div>
-
-<div width="33%" style="float: left; padding-left: 32px;">
-
-- Do this via
-  - READMEs
-  - Technical documentation
-  - Inline documentation
-  - Automatic code formatting
-  - Automated testing
-  - Continuous integration
-  - Continuous benchmarking
-
-</div>
-
-<div style="float: left; width: 100%; margin-top: 48px;">
-This is less effort than you think!
-</div>
-
--
-
-## Upcoming events
-
-- [CCP-TEPP Docathon: 2026-03-18&ndash;20, University of Warwick](https://indico.global/e/ccp-tepp-docathon-2026)
-- [CCP-TEPP Summer School: 2026-06-29&ndash;2026-07-03, Swansea University](https://indico.global/e/ccp-tepp-school-2026)
+Four years ago I stood up in front of this group
+and promised a set of guidance on how to work openly and reproducibly.
+It took longer than expected,
+and is still a work in progress,
+but I can now at least provide a set of tips on how our collaboration tries to work.
