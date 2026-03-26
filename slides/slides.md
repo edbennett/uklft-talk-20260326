@@ -389,3 +389,31 @@ and promised a set of guidance on how to work openly and reproducibly.
 It took longer than expected,
 and is still a work in progress,
 but I can now at least provide a set of tips on how our collaboration tries to work.
+
+-
+
+<!-- .element data-background-image="images/shareing.png" -->
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+[shareing-dri.github.io](https://shareing-dri.github.io)
+
+Notes:
+The SHAREing project aims to help
+research technical professionals using accelerated compute
+develop skills to do this more effectively
+This includes researchers and RSEs
+doing more effective profiling and performance engineering.
+It's worth keeping an eye on.
